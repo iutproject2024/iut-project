@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "843399453817",
+    "project_id": "iut-project-99f94",
+    "storage_bucket": "iut-project-99f94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843399453817:android:6a88755da5208de61e08a8",
+        "android_client_info": {
+          "package_name": "com.example.iutapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEGuLEAzUUT99uaWFwbMuolGBi_2zZC_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

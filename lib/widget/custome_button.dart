@@ -5,8 +5,9 @@ class CustomeButton extends StatelessWidget {
   final String? text;
   final Function? function;
   final TextStyle? textStyle;
+  final Color? colors;
 
-  const CustomeButton({this.text, this.textStyle, this.size, this.function});
+  const CustomeButton({super.key, this.text, this.textStyle, this.size, this.function,this.colors});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,7 @@ class CustomeButton extends StatelessWidget {
         width: size!.width * .7,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            gradient: LinearGradient(colors: [
-              Colors.blue,
-              Colors.blue,
-            ])),
+             color: colors),
         child: MaterialButton(
           onPressed: () async {
             function!();
