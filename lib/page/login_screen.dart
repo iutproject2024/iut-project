@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                           ValidateTextView(
                             enabled: true,
                             hintText: "البريد الإلكتروني",
-                            textInputType: TextInputType.text,
+                            textInputType: TextInputType.emailAddress,
                             controller: controller.email,
                           ),
                           ValidateTextView(

@@ -5,12 +5,14 @@ import 'package:google_fonts_arabic/fonts.dart';
 import 'package:iutapp/page/login_screen.dart';
 import 'package:iutapp/page/signin_screen.dart';
 import 'package:iutapp/page/signin_screen.dart';
+import 'package:iutapp/page/student/home_student.dart';
 
 // import '../controller/main_controller.dart';
 import '../utils/appcolor.dart';
 import '../widget/custome_button.dart';
 // import 'Doctors/doctor_home.dart';
 import 'admin/home_admin.dart';
+import 'driver/home_driver.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -24,13 +26,13 @@ class _MainMenuState extends State<MainMenu> {
   void initState() {
     // TODO: implement initState
     super.initState();
-Future.delayed(Duration.zero, () async {
-  checkUser();
-});
-   
+    Future.delayed(Duration.zero, () async {
+      checkUser();
+    });
   }
-  void checkUser(){
- int usertype;
+
+  void checkUser() {
+    int usertype;
     Widget screen = MainMenu();
     if (GetStorage().read("user") != null) {
       var user = GetStorage().read('user');
@@ -38,14 +40,12 @@ Future.delayed(Duration.zero, () async {
       if (usertype == 1) //Admin
       {
         screen = AdminHome();
-      } else if (usertype == 2) //Donor
+      } else if (usertype == 2)  
       {
-        // screen = DoctorHome();
+        screen = DriverHome();
+      } else if (usertype == 3) {
+        screen = StudentHome();
       }
-      // else if (usertype == 3) //Observe
-      // {
-      //   screen = ObserveHome();
-      // }
       Get.off(screen);
     }
   }

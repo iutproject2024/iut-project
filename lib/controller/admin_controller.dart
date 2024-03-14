@@ -111,7 +111,7 @@ class AdminController extends GetxController {
   //   Department = oblist;
   //   update();
   // }
-
+    
   void getDepartment() async {
     Department = [];
 
