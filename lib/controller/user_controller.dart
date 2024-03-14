@@ -6,14 +6,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:iutapp/page/admin/home_admin.dart';
 import 'package:iutapp/page/login_screen.dart';
+import 'package:iutapp/page/student/home_student.dart';
 // import 'package:masjids/page/Observe/add_musque_request.dart';
 // import 'package:masjids/page/Observe/observe_home.dart';
 
 // import '../page/Admin/admin_home.dart';
 // import '../page/Charity/charity_home.dart';
 // import '../page/Donor/donor_home.dart';
-import '../page/mainmenu.dart'; 
- 
+import '../page/driver/home_driver.dart';
+import '../page/mainmenu.dart';
+
 class UserController extends GetxController {
   UserCredential? _authresult;
   FirebaseAuth? auth;
@@ -43,7 +45,7 @@ class UserController extends GetxController {
     //   } else if (usertype == 2) //Doctor
     //   {
     //     screen = DoctorHome();
-    //   } 
+    //   }
     //   // else if (usertype == 3) //Patient
     //   // {
     //   //   screen = PatientHomePage();
@@ -103,20 +105,16 @@ class UserController extends GetxController {
     // });
   }
 
-   void resetPassword() async {
-  auth = await FirebaseAuth.instance;
-  await auth!
-        .sendPasswordResetEmail(email: email.text.trim())
-        .then((value) {
-
-      showSnakbar('تنبية', 'يرجى التحقق من بريدك الإلكتروني', Icons.error, Colors.red);
+  void resetPassword() async {
+    auth = await FirebaseAuth.instance;
+    await auth!.sendPasswordResetEmail(email: email.text.trim()).then((value) {
+      showSnakbar(
+          'تنبية', 'يرجى التحقق من بريدك الإلكتروني', Icons.error, Colors.red);
       // print(value);
-          //if(value)
-        })
-        .catchError((e)  {
-          
-        }); 
+      //if(value)
+    }).catchError((e) {});
   }
+
 //async and await is
   void login() async {
     try {
@@ -139,26 +137,19 @@ class UserController extends GetxController {
             GetStorage().write("user", data);
             GetStorage().write("login", true);
           }
-     
-         int? usertype = user['typeuser'];
-          if (usertype == 1) //Admin
-          {
+
+          int? usertype = user['typeuser'];
+          if (usertype == 1) {
             screen = AdminHome();
-          } 
-          else if (usertype == 2) //Donor
-          {
-            
-          } else if (usertype == 3) 
-          {
-            // screen = ObserveHome();
+          } else if (usertype == 2) {
+            screen = DriverHome();
+          } else if (usertype == 3) {
+            screen = StudentHome();
           }
-          //  else if (usertype == 4) {
-          //   screen = CharityHome();
-          // }
           email.clear();
           password.clear();
         }
-        Get.to(screen);
+        Get.off(screen);
       });
     } catch (x) {
       showSnakbar('خطأ', x.toString(), Icons.error, Colors.red);
@@ -176,6 +167,7 @@ class UserController extends GetxController {
   }
 
   void showSnakbar(String head, String body, IconData icon, Color color) {
+    
     Get.snackbar(
       head,
       body,
