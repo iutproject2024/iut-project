@@ -19,6 +19,7 @@ class MessageBubble extends StatelessWidget {
               !isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
             Container(
+              width: size.width * .9,
               decoration: BoxDecoration(
                 color: !isMe ? Colors.grey[300] : Colors.green[300],
                 borderRadius: BorderRadius.only(
@@ -28,7 +29,6 @@ class MessageBubble extends StatelessWidget {
                   bottomRight: !isMe ? Radius.circular(0) : Radius.circular(14),
                 ),
               ),
-              // width: size.width * .7,
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
               margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Column(
@@ -36,6 +36,7 @@ class MessageBubble extends StatelessWidget {
                     !isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
                   Text(
+                    softWrap: true,
                     message,
                     style: TextStyle(
                       color: !isMe

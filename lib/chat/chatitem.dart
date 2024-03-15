@@ -25,17 +25,21 @@ class _ChatItemState extends State<ChatItem> {
         .where('chatId', isEqualTo: widget.chatId)
         .get()
         .then((value) {
-      // setState(() {
-      if (user!.uid == value.docs[0]['senderId']) {
-        userImage = value.docs[0]['reciverImage'];
-        userName = value.docs[0]['reciverName'];
-      } else {
-        userImage = value.docs[0]['senderImage'];
-        userName = value.docs[0]['senderName'];
-      }
-      counter = value.docs.length;
-      lastMsg = value.docs[counter! - 1]['text'];
-      // });
+      setState(() {
+        if (value != null) {
+          if (user!.uid == value.docs[0]['senderId']) {
+            userImage = value.docs[0]['reciverImage'];
+            userName = value.docs[0]['reciverName'];
+          } else {
+            userImage = value.docs[0]['senderImage'];
+            userName = value.docs[0]['senderName'];
+          }
+          counter = value.docs.length;
+          lastMsg = counter! > 1
+              ? value.docs[counter! - 1]['text']
+              : value.docs[0]['text'];
+        }
+      });
     });
   }
 

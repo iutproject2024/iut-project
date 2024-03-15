@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 
 class StudentController extends GetxController {
   final pageController = PageController(initialPage: 4);
+  ScrollController? scrollController;
+
   var tabIndex = 0;
 
   void changeTabIndex(int index) {
@@ -11,8 +15,86 @@ class StudentController extends GetxController {
     update();
   }
 
+  int? type;
+
+  var posts = [], reports = [];
+  var user = GetStorage().read('user');
+
+  void getPosts(int type) async {
+    // type = user['typeuser'];
+    posts = [];
+
+    var collection;
+
+    if (type == 2) {
+      collection = FirebaseFirestore.instance
+          .collection('posts')
+          .where('userid', isEqualTo: user['id']);
+    } else {
+      collection = FirebaseFirestore.instance.collection('posts');
+    }
+    var querySnapshot = await collection.get();
+    var list = [];
+    for (var queryDocumentSnapshot in querySnapshot.docs) {
+      Map<String, dynamic> data = queryDocumentSnapshot.data();
+      list.add(data);
+    }
+    posts = list;
+    update();
+  }
+
+  void getReport(int type) async {
+    // type = user['typeuser'];
+    reports = [];
+
+    var collection;
+
+    if (type == 2) {
+      collection = FirebaseFirestore.instance
+          .collection('reports')
+          .where('userid', isEqualTo: user['id']);
+    } else {
+      collection = FirebaseFirestore.instance.collection('reports');
+    }
+    var querySnapshot = await collection.get();
+    var list = [];
+    for (var queryDocumentSnapshot in querySnapshot.docs) {
+      Map<String, dynamic> data = queryDocumentSnapshot.data();
+      list.add(data);
+    }
+    reports = list;
+    update();
+  }
+
+  void deletePost(String id) async {
+    await FirebaseFirestore.instance
+        .collection('posts')
+        .doc(id)
+        .delete()
+        .then((value) {
+      getPosts(type!);
+      update();
+    });
+  }
+
+  void deleteReport(String id) async {
+    await FirebaseFirestore.instance
+        .collection('reports')
+        .doc(id)
+        .delete()
+        .then((value) {
+      getReport(type!);
+      getPosts(type!);
+      update();
+    });
+  }
+
   @override
   void onInit() async {
+    user = GetStorage().read('user');
+    type = user['typeuser'];
+    getReport(type!);
+    getPosts(type!);
     super.onInit();
   }
 

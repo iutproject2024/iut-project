@@ -56,7 +56,7 @@ class Online extends StatelessWidget {
                           children: [
                             InkWell(
                               child: CircleAvatar(
-                                radius: 28.0,
+                                radius: 21.0,
                                 backgroundImage:
                                     NetworkImage(docs[index]['image_url']),
                               ),

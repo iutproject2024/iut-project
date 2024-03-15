@@ -1,21 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:iutapp/widget/custome_button.dart';
-// import 'package:iamhere/page/Admin/edit_user.dart';
-
-// import '../../widget/user_card.dart';
+import '../../controller/scroll_controller.dart';
 import '../../widget/user_card.dart';
 import '../../controller/admin_controller.dart';
 import '../../utils/appcolor.dart';
-import '../login_screen.dart';
-import '../profile.dart';
 
 class UserList extends StatelessWidget {
   final AdminController adminController = Get.find();
+  final ScrollToTopController sController = Get.put(ScrollToTopController());
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +84,7 @@ class UserList extends StatelessWidget {
               child: controller.userList.length > 0
                   ? ListView.builder(
                       shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
+                      controller: sController.msgScroll,
                       itemCount: controller.userList.length,
                       itemBuilder: (context, i) {
                         final item = controller.userList![i];
@@ -102,13 +97,12 @@ class UserList extends StatelessWidget {
                         text: "لا يوجد أي مستخدمين",
                         function: () {},
                         colors: AppColor.buttonColor,
-                                            size: size * .8,
-
-                      textStyle: TextStyle(
-                          color: AppColor.textColor,
-                          fontFamily: ArabicFonts.Cairo,
-                          package: 'google_fonts_arabic',
-                          fontWeight: FontWeight.bold), 
+                        size: size * .8,
+                        textStyle: TextStyle(
+                            color: AppColor.textColor,
+                            fontFamily: ArabicFonts.Cairo,
+                            package: 'google_fonts_arabic',
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
         ],

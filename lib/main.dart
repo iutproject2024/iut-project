@@ -1,4 +1,5 @@
 // @dart=2.9
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,17 +12,24 @@ import 'package:iutapp/utils/binding.dart';
  
 import 'page/OnBoardingScreen.dart';
 
-Future<void> _firebadeMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase
-      .initializeApp(); // options: DefaultFirebaseConfig.platformOptions
-  print('Handling a background message ${message.messageId}');
-}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-  FirebaseMessaging.onBackgroundMessage(_firebadeMessagingBackgroundHandler);
+  AwesomeNotifications().initialize('resource://drawable/res_app_icon', [
+    NotificationChannel(
+        channelKey: 'key1',
+        channelName: 'Proto Coders Point',
+        channelDescription: "Notification Swap",
+        defaultColor: Color(0XFF9050DD),
+        ledColor: Colors.white,
+        playSound: true,
+        enableLights: true,
+        enableVibration: true,
+        importance: NotificationImportance.High)
+  ]);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await GetStorage.init();
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -36,6 +44,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
@@ -54,4 +63,21 @@ class MyApp extends StatelessWidget {
           },
         ));
   }
+}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  AwesomeNotifications().createNotification(
+      actionButtons: [
+        NotificationActionButton(
+          key: 'key',
+          label: 'Open',
+          // actionType: ActionType.InputField,
+        )
+      ],
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'key1',
+        title: message.data["title"],
+        body: message.data["body"],
+      ));
+  AwesomeNotifications().createNotificationFromJsonData(message.data);
 }

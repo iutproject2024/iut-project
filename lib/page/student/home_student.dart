@@ -5,7 +5,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:iutapp/page/profile.dart';
 import 'package:iutapp/page/student/postlist.dart';
+import 'package:iutapp/page/student/reportlist.dart';
 import 'package:iutapp/utils/appcolor.dart';
+import 'package:iutapp/chat/chat.dart';
 
 import '../../controller/student_controller.dart';
 import '../login_screen.dart';
@@ -43,9 +45,10 @@ class StudentHome extends StatelessWidget {
           child: IndexedStack(
             index: controller.tabIndex,
             children: [
-              PostList(type: 2),
-              Container(),
-              Container(),
+              PostList(),
+              ReportList(),
+             
+              AllChats(type:controller.user['typeuser'] ),
               Container(),
             ],
           ),

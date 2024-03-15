@@ -33,6 +33,10 @@ dependencies:
   firebase_storage: ^11.6.0
   cached_network_image: ^3.2.3
   material_design_icons_flutter: ^7.0.7296
+  awesome_notifications: ^0.8.2
+  palette_generator: ^0.3.3+3
+  firebase_admin: ^0.2.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
