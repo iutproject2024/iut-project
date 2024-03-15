@@ -6,6 +6,8 @@ import 'package:iutapp/page/login_screen.dart';
 import 'package:iutapp/page/signin_screen.dart';
 import 'package:iutapp/page/signin_screen.dart';
 import 'package:iutapp/page/student/home_student.dart';
+import 'dart:convert';
+
 
 // import '../controller/main_controller.dart';
 import '../utils/appcolor.dart';
@@ -31,7 +33,7 @@ class _MainMenuState extends State<MainMenu> {
     });
   }
 
-  void checkUser() {
+  void checkUser() async {
     int usertype;
     Widget screen = MainMenu();
     if (GetStorage().read("user") != null) {
@@ -40,13 +42,13 @@ class _MainMenuState extends State<MainMenu> {
       if (usertype == 1) //Admin
       {
         screen = AdminHome();
-      } else if (usertype == 2)  
-      {
+      } else if (usertype == 2) {
         screen = DriverHome();
       } else if (usertype == 3) {
         screen = StudentHome();
       }
       Get.off(screen);
+    
     }
   }
 

@@ -93,24 +93,7 @@ class AdminController extends GetxController {
 
     update();
   }
-
-  // void getObserve() async {
-  //   Department = [];
-
-  //   var collection = FirebaseFirestore.instance
-  //       .collection('users')
-  //       .where('typeuser', isEqualTo: 3);
-  //   var querySnapshot = await collection.get();
-
-  //   var oblist = [];
-  //   for (var queryDocumentSnapshot in querySnapshot.docs) {
-  //     Map<String, dynamic> data = queryDocumentSnapshot.data();
-
-  //     oblist.add(data['name']);
-  //   }
-  //   Department = oblist;
-  //   update();
-  // }
+ 
     
   void getDepartment() async {
     Department = [];
@@ -155,7 +138,7 @@ class AdminController extends GetxController {
           String? token = await FirebaseMessaging.instance.getToken();
 
           // final url = await ref.getDownloadURL();
-          if (userType == 1)
+          if (userType == 2) {
             await FirebaseFirestore.instance
                 .collection('users')
                 .doc(value.user!.uid)
@@ -165,9 +148,9 @@ class AdminController extends GetxController {
               'password': password.text.trim(),
               'email': email.text.trim(),
               'phone': '966' + phone.text.trim(),
+              'number': id.text.trim(),
               'token': token,
-              'typeuser': userType,
-              'address': address.text.trim(),
+              'typeuser': userType, 
               'image_url':
                   "https://firebasestorage.googleapis.com/v0/b/masjids-12575.appspot.com/o/user-image%2Fuser.png?alt=media&token=9cebc390-cd59-49f3-8a24-948ee326f4cd",
               'isActive': false
@@ -181,8 +164,7 @@ class AdminController extends GetxController {
               ConfPassword.clear();
               phone.clear();
             });
-
-          else
+          } else {
             await FirebaseFirestore.instance
                 .collection('users')
                 .doc(value.user!.uid)
@@ -210,6 +192,7 @@ class AdminController extends GetxController {
               ConfPassword.clear();
               phone.clear();
             });
+          }
 
           int usertype;
           if (GetStorage().read("user") != null) {

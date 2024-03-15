@@ -49,7 +49,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    user.length == 0
+                    user.toString().length == 0
                         ? Center(
                             child: Image.asset(
                               'assets/icon.png',

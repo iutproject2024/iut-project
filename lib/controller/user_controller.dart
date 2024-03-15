@@ -136,6 +136,7 @@ class UserController extends GetxController {
             user = data;
             GetStorage().write("user", data);
             GetStorage().write("login", true);
+            // FirebaseFirestore.instance.collection('user').doc(user['id']).update({data});
           }
 
           int? usertype = user['typeuser'];
