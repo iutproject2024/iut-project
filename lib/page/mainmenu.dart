@@ -1,36 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:iutapp/page/login_screen.dart';
 import 'package:iutapp/page/signin_screen.dart';
+import 'package:iutapp/page/signin_screen.dart';
+import 'package:iutapp/page/student/home_student.dart';
+import 'dart:convert';
 
+
+// import '../controller/main_controller.dart';
+import '../utils/appcolor.dart';
 import '../widget/custome_button.dart';
+// import 'Doctors/doctor_home.dart';
+import 'admin/home_admin.dart';
+import 'driver/home_driver.dart';
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
+  const MainMenu({super.key});
+
+  @override
+  State<MainMenu> createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      checkUser();
+    });
+  }
+
+  void checkUser() async {
+    int usertype;
+    Widget screen = MainMenu();
+    if (GetStorage().read("user") != null) {
+      var user = GetStorage().read('user');
+      usertype = user['typeuser'];
+      if (usertype == 1) //Admin
+      {
+        screen = AdminHome();
+      } else if (usertype == 2) {
+        screen = DriverHome();
+      } else if (usertype == 3) {
+        screen = StudentHome();
+      }
+      Get.off(screen);
+    
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(      
-      // backgroundColor: Colors.blue[200],
-      // appBar: AppBar(
-      //     backgroundColor: Colors.white,
-      //     title: Text('إبصار',
-      //         style: TextStyle(
-      //             fontFamily: ArabicFonts.Cairo,
-      //             package: 'google_fonts_arabic',
-      //             color: Colors.black,
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: 20))),
+    // return GetBuilder<MainController>(builder: (controller) {
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: size.height * .4,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/icon.png'), fit: BoxFit.fill)),
+            Center(
+              child: Image.asset(
+                'assets/icon.png',
+                width: size.width * .8,
+                height: size.height * .5,
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -41,7 +78,7 @@ class MainMenu extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'hello'.tr,
+                    'مرحبا',
                     style: TextStyle(
                         color: Colors.black,
                         fontFamily: ArabicFonts.Cairo,
@@ -52,12 +89,13 @@ class MainMenu extends StatelessWidget {
                     height: 30,
                   ),
                   CustomeButton(
-                    text: "تسجيل دخول",
+                    text: "دخول",
                     size: size,
+                    colors: AppColor.buttonColor,
                     textStyle: const TextStyle(
                         fontFamily: ArabicFonts.Cairo,
                         package: 'google_fonts_arabic',
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                     function: () {
                       {
@@ -69,12 +107,13 @@ class MainMenu extends StatelessWidget {
                     height: 30,
                   ),
                   CustomeButton(
-                    text: "تسجيل جديد",
+                    text: "تسجيل",
                     size: size,
+                    colors: AppColor.buttonColor,
                     textStyle: const TextStyle(
                         fontFamily: ArabicFonts.Cairo,
                         package: 'google_fonts_arabic',
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                     function: () {
                       {
@@ -89,5 +128,6 @@ class MainMenu extends StatelessWidget {
         ),
       ),
     );
+    // });
   }
 }

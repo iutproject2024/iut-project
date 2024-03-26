@@ -4,6 +4,7 @@ import 'package:google_fonts_arabic/fonts.dart' as font;
 import 'package:iutapp/page/mainmenu.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../model/boarding.dart';
+import '../utils/appcolor.dart';
 import 'login_screen.dart';
 import '../utils/LocaleString.dart';
 
@@ -67,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColor.buttonColor,
         actions: [
           TextButton(
             onPressed: () {
@@ -113,7 +114,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(
                   effect: ExpandingDotsEffect(
                     dotColor: Colors.grey,
-                    activeDotColor: Colors.blue,
+                    activeDotColor: AppColor.buttonColor,
                     dotWidth: 10,
                     dotHeight: 10,
                     spacing: 5,
@@ -124,7 +125,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 Spacer(),
                 FloatingActionButton(
-                  backgroundColor: Colors.blue,
+                  backgroundColor:AppColor.buttonColor,
                   onPressed: () {
                     if (isLast) {
                       submit();
@@ -160,7 +161,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               package: 'google_fonts_arabic',
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: Colors.blue,
+              color:AppColor.buttonColor,
             ),
           ),
           SizedBox(
