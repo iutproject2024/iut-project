@@ -51,17 +51,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     List<BoardingModel> boarding = [
       BoardingModel(
-        image: 'assets/icon.png',
+        image: 'assets/back1.jpg',
         title: 'hello'.tr,
         body: 'appname'.tr,
       ),
       BoardingModel(
-        image: 'assets/icon.png',
+        image: 'assets/back1.jpg',
         title: 'goal'.tr,
         body: 'goaldesc'.tr
       ),
       BoardingModel(
-        image: 'assets/icon.png',
+        image: 'assets/back1.jpg',
         title: 'join',
         body: 'joindesc'.tr
       ),

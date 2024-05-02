@@ -29,7 +29,7 @@ class AdminHome extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
            
             // Image.asset(
-            //   'assets/icon.png',
+            //   'assets/back1.jpg',
             //   height: size.width * .1,
             // ),
            InkWell(

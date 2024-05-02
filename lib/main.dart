@@ -17,6 +17,8 @@ import 'page/OnBoardingScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+ await FirebaseMessaging.instance.subscribeToTopic('all');
+
   AwesomeNotifications().initialize('resource://drawable/res_app_icon', [
     NotificationChannel(
         channelKey: 'key1',

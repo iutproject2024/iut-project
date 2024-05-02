@@ -34,11 +34,12 @@ class ValidateTextView extends StatelessWidget {
         keyboardType: textInputType,
         onChanged: onChanged,
         controller: controller,
+        textAlign: TextAlign.right,
         textInputAction: TextInputAction.next,
         style: TextStyle(
-            fontFamily: ArabicFonts.Katibeh,
+            fontFamily: ArabicFonts.Cairo,
             package: 'google_fonts_arabic',
-            color: context.theme.hintColor,
+            color: Theme.of(context).indicatorColor,
             fontSize: fontSize ?? 16,
             height: .9),
         decoration: InputDecoration(
@@ -47,6 +48,12 @@ class ValidateTextView extends StatelessWidget {
           ),
           hintText: hintText,
           labelText: hintText,
+          hintStyle: TextStyle(
+              fontFamily: ArabicFonts.Cairo,
+              package: 'google_fonts_arabic',
+              color: Theme.of(context).indicatorColor,
+              fontSize: fontSize ?? 16,
+              height: .9),
         ),
         validator: (value) {
           if (textInputType == TextInputType.emailAddress) {

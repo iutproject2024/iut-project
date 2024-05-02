@@ -64,7 +64,7 @@ class _MainMenuState extends State<MainMenu> {
           children: [
             Center(
               child: Image.asset(
-                'assets/icon.png',
+                'assets/back1.jpg',
                 width: size.width * .8,
                 height: size.height * .5,
               ),

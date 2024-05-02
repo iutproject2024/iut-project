@@ -47,141 +47,145 @@ class _ProfileState extends State<ProfileScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255,86,171,225)
+        ),
         body: Center(
             child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CustomeButton(
-          text: "تعديل",
-          size: size * .8,
-          colors: Color.fromARGB(255, 237, 237, 237),
-          textStyle: const TextStyle(
-              fontFamily: ArabicFonts.Cairo,
-              package: 'google_fonts_arabic',
-              fontWeight: FontWeight.bold),
-          function: () {
-            {
-              nameController.text = user['name'];
-              phoneController.text = user['phone'];
-              // paymentController.text = user['payment'];
-              add = !add;
-            }
-          },
-        ),
-        !add
-            ? Center(
-                child: Container(
-                  padding:
-                      EdgeInsets.only(right: 2, bottom: 5, top: 2, left: 2),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(user['name'],
-                          style: TextStyle(
-                              fontFamily: ArabicFonts.Amiri,
-                              package: 'google_fonts_arabic',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20)),
-                      Text(type,
-                          style: TextStyle(
-                              fontFamily: ArabicFonts.Amiri,
-                              package: 'google_fonts_arabic',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20)),
-                      Text(user['email'],
-                          style: TextStyle(
-                              fontFamily: ArabicFonts.Amiri,
-                              package: 'google_fonts_arabic',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20)),
-                      Text(user['phone'],
-                          style: TextStyle(
-                              fontFamily: ArabicFonts.Amiri,
-                              package: 'google_fonts_arabic',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20)),
-                    ],
-                  ),
-                ),
-              )
-            : Row(),
-        add
-            ? SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Form(
-                          child: ValidateTextView(
-                        enabled: true,
-                        textInputType: TextInputType.text,
-                        controller: nameController,
-                        hintText: 'الاسم',
-                        filedSize: r'^.{1,30}$',
-                      )),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomeButton(
+              text: "تعديل",
+              size: size * .8,
+              colors: Color.fromARGB(255, 237, 237, 237),
+              textStyle: const TextStyle(
+                  fontFamily: ArabicFonts.Cairo,
+                  package: 'google_fonts_arabic',
+                  fontWeight: FontWeight.bold),
+              function: () {
+                {
+                  nameController.text = user['name'];
+                  phoneController.text = user['phone'];
+                  // paymentController.text = user['payment'];
+                  add = !add;
+                }
+              },
+            ),
+            !add
+                ? Center(
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(right: 2, bottom: 5, top: 2, left: 2),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(user['name'],
+                              style: TextStyle(
+                                  fontFamily: ArabicFonts.Amiri,
+                                  package: 'google_fonts_arabic',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20)),
+                          Text(type,
+                              style: TextStyle(
+                                  fontFamily: ArabicFonts.Amiri,
+                                  package: 'google_fonts_arabic',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20)),
+                          Text(user['email'],
+                              style: TextStyle(
+                                  fontFamily: ArabicFonts.Amiri,
+                                  package: 'google_fonts_arabic',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20)),
+                          Text(user['phone'],
+                              style: TextStyle(
+                                  fontFamily: ArabicFonts.Amiri,
+                                  package: 'google_fonts_arabic',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20)),
+                        ],
+                      ),
                     ),
-                    ValidateTextView(
-                      enabled: true,
-                      textInputType: TextInputType.text,
-                      controller: phoneController,
-                      hintText: 'رقم الهاتف',
-                      filedSize: r'^.{1,30}$',
-                    ),
-                    // ValidateTextView(
-                    //   enabled: true,
-                    //   textInputType: TextInputType.text,
-                    //   controller: paymentController,
-                    //   hintText: 'بيانات الدفع',
-                    // ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  )
+                : Row(),
+            add
+                ? SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 28),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        MaterialButton(
-                          color: Colors.blue,
-                          child: Text(
-                            'حفظ التعديل',
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0),
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              UpdateUser();
-                            });
-                          },
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Form(
+                              child: ValidateTextView(
+                            enabled: true,
+                            textInputType: TextInputType.text,
+                            controller: nameController,
+                            hintText: 'الاسم',
+                            filedSize: r'^.{1,30}$',
+                          )),
                         ),
-                        SizedBox(
-                          width: 10,
+                        ValidateTextView(
+                          enabled: true,
+                          textInputType: TextInputType.text,
+                          controller: phoneController,
+                          hintText: 'رقم الهاتف',
+                          filedSize: r'^.{1,30}$',
                         ),
-                        MaterialButton(
-                            color: Colors.red,
-                            child: Text(
-                              'الغاء التعديل',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                        // ValidateTextView(
+                        //   enabled: true,
+                        //   textInputType: TextInputType.text,
+                        //   controller: paymentController,
+                        //   hintText: 'بيانات الدفع',
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            MaterialButton(
+                              color: Colors.blue,
+                              child: Text(
+                                'حفظ التعديل',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                              ),
+                              onPressed: () async {
+                                setState(() {
+                                  UpdateUser();
+                                });
+                              },
                             ),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0),
+                            SizedBox(
+                              width: 10,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                add = !add;
-                              });
-                            }),
+                            MaterialButton(
+                                color: Colors.red,
+                                child: Text(
+                                  'الغاء التعديل',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ),
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(30.0),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    add = !add;
+                                  });
+                                }),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-              )
-            : Row(),
-      ],
-    )));
+                  )
+                : Row(),
+          ],
+        )));
   }
 
   void UpdateUser() async {

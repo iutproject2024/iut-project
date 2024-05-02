@@ -27,19 +27,22 @@ class CreateReport extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: 5),
-            CustomeButton(
-              text: "إضافة تقرير",
-              function: () {},
-              colors: AppColor.buttonColor,
-              size: MediaQuery.of(context).size * .8,
-              textStyle: TextStyle(
-                  color: AppColor.textColor,
-                  fontFamily: ArabicFonts.Cairo,
-                  package: 'google_fonts_arabic',
-                  fontWeight: FontWeight.bold),
+         
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomeButton(
+                text: "إضافة تقرير",
+                function: () {},
+                colors: AppColor.buttonColor,
+                size: MediaQuery.of(context).size * .7,
+                textStyle: TextStyle(
+                    color: AppColor.textColor,
+                    fontFamily: ArabicFonts.Cairo,
+                    package: 'google_fonts_arabic',
+                    fontWeight: FontWeight.bold),
+              ),
             ),
-            SizedBox(height: 5),
+          
             TextFormField(
               controller: controller.reporttext,
               maxLength: 1000,

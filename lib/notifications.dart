@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+ 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:http/http.dart';
 
@@ -19,7 +19,9 @@ class SendMessage {
           'click_action': 'FLUTTER_NOTIFICATION_CLICK',
           'type': 'COMMENT'
         },
-        'to': "all",
+        'to': "topic/all",
+        // 'to': "topics/all",
+        // 'to': "fcmToken",
       };
 
       var client = Client();

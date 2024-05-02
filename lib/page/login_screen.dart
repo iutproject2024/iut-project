@@ -6,6 +6,7 @@ import '../controller/user_controller.dart';
 import '../utils/appcolor.dart';
 import '../widget/custome_button.dart';
 import '../widget/text.dart';
+import '../widget/password_text.dart';
 import 'signin_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Center(
                       child: Image.asset(
-                        'assets/icon.png',
+                        'assets/back1.jpg',
                         width: size.width * .8,
                         height: size.height * .5,
                       ),
@@ -41,17 +42,19 @@ class LoginScreen extends StatelessWidget {
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ValidateTextView(
-                            enabled: true,
-                            hintText: "البريد الإلكتروني",
-                            textInputType: TextInputType.emailAddress,
-                            controller: controller.email,
-                          ),
-                          ValidateTextView(
-                            enabled: true,
-                            hintText: "كلمة المرور",
-                            textInputType: TextInputType.visiblePassword,
-                            controller: controller.password,
-                          ),
+                                  obscureText: false,
+                                  enabled: true,
+                                  hintText: "البريد الإلكتروني",
+                                  textInputType: TextInputType.emailAddress,
+                                  controller: controller.email,
+                                ),
+                                PasswordTextView(
+                                  obscureText: true,
+                                  enabled: true,
+                                  hintText: "كلمة المرور",
+                                  textInputType: TextInputType.visiblePassword,
+                                  controller: controller.password,
+                                ),
                           TextButton(
                             onPressed: () {},
                             child: Text(

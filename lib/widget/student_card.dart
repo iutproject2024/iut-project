@@ -76,7 +76,7 @@ StudentCard(Size size, dynamic data, BuildContext context, controller) {
                       },
                       child: Icon(
                         Icons.message,
-                        color: Colors.blue,
+                        color: Colors.black,
                       ),
                     ),
                     InkWell(

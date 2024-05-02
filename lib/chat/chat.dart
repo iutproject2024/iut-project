@@ -2,13 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts_arabic/fonts.dart';
-
 import '../controller/scroll_controller.dart';
-import '../page/login_screen.dart';
-// import '../page/profile.dart';
-// import '../widget/chat/online.dart';
 import '../widget/chat/online.dart';
 import 'chatitem.dart';
 
@@ -57,6 +51,7 @@ class AllChats extends StatelessWidget {
                             } else if (docs[index]['person2'] == user.uid) {
                               reciver = docs[index]['person1'];
                             }
+                            
                             return ChatItem(user.uid, reciver!, docs[index].id);
                           } else {
                             return Row();
@@ -65,7 +60,8 @@ class AllChats extends StatelessWidget {
                   );
                 }),
           )
-        ],
+
+],
       ),
     );
   }

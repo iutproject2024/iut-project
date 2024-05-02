@@ -52,7 +52,7 @@ class SignInScreen extends StatelessWidget {
                     user.toString().length == 0
                         ? Center(
                             child: Image.asset(
-                              'assets/icon.png',
+                              'assets/back1.jpg',
                               width: size.width * .8,
                               height: size.height * .3,
                             ),

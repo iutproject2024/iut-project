@@ -22,25 +22,23 @@ class ReportList extends StatelessWidget {
         children: [
           Expanded(
               flex: 1,
-              child: Column(
-                children: [
-                  SizedBox(height: 5),
-                  CustomeButton(
-                    text: "التقارير",
-                    function: () {
-                      controller.getReport(1);
-                    },
-                    colors: AppColor.buttonColor,
-                    size: MediaQuery.of(context).size * .8,
-                    textStyle: TextStyle(
-                        color: AppColor.textColor,
-                        fontFamily: ArabicFonts.Cairo,
-                        package: 'google_fonts_arabic',
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                ],
-              )),
+              child:  Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomeButton(
+                      text: "التقارير",
+                      function: () {
+                        controller.getReport(1);
+                      },
+                      colors: AppColor.buttonColor,
+                      size: MediaQuery.of(context).size * .8,
+                      textStyle: TextStyle(
+                          color: AppColor.textColor,
+                          fontFamily: ArabicFonts.Cairo,
+                          package: 'google_fonts_arabic',
+                          fontWeight: FontWeight.bold),
+                    ),
+              ),
+                ),
           Expanded(
               flex: 11,
               child: controller.reports.length > 0
